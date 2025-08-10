@@ -1,0 +1,75 @@
+html, body{
+  width: 100%;
+  height: 100%;
+}
+
+.document{
+  width: 100%;
+  height: 100%;
+}
+
+.cards__container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cards__buttonUp{
+  width: 100%;
+  height: 100%;
+}
+
+.cards__buttonTeam{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.cards__buttonDown{
+  width: 100%;
+  height: 100%;
+  margin-top: 10px;
+}
+
+.cards__space{
+  width: 100%;
+  height: 10px;
+}
+
+.heading{
+  text-align: center;
+}
+
+.cards__visible{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cards__hide{
+  display: none;
+}
+
+.modal__visible{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.modal__hide{
+  display: none;
+}
+
+.order__visible{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.order__hide{
+  display: none;
+}
