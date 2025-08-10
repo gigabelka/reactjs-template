@@ -11,7 +11,7 @@ import { DisplayData, type DisplayDataRow } from '@/components/DisplayData/Displ
 import { Page } from '@/components/Page.tsx';
 
 function getUserRows(user: User): DisplayDataRow[] {
-  return Object.entries(user).map(([title, value]) => ({ title, value }));
+  return Object.entries(user).map(([title, value]) => ({ title, value: String(value) }));
 }
 
 export const InitDataPage: FC = () => {
@@ -28,7 +28,7 @@ export const InitDataPage: FC = () => {
         if (value instanceof Date) {
           acc.push({ title, value: value.toISOString() });
         } else if (!value || typeof value !== 'object') {
-          acc.push({ title, value });
+          acc.push({ title, value: String(value) });
         }
         return acc;
       }, []),
@@ -50,7 +50,7 @@ export const InitDataPage: FC = () => {
   const chatRows = useMemo<DisplayDataRow[] | undefined>(() => {
     return !initDataState?.chat
       ? undefined
-      : Object.entries(initDataState.chat).map(([title, value]) => ({ title, value }));
+      : Object.entries(initDataState.chat).map(([title, value]) => ({ title, value: String(value) }));
   }, [initDataState]);
 
   if (!initDataRows) {
