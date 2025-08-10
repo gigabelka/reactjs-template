@@ -1,4 +1,4 @@
-import type {GetItemsType} from '../../Types';
+import type {GetItemsType} from '../Types';
 import { IoHomeOutline } from "react-icons/io5";
 import './Modal.css';
 

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Cart.css";
 import Button from "../Button/Button";
-import { GetItemsType } from "../../Types"
+import { GetItemsType } from "../Types"
 
 type PropsType = {
   CartItems: GetItemsType[];

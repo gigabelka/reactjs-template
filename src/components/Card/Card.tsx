@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import Button from "../Button/Button";
-import type { GetItemsType } from '../../Types';
+import type { GetItemsType } from '../Types';
 // import { HiOutlinePlusCircle, HiOutlineMinusCircle  } from "react-icons/hi";
 // import { SlMinus, SlPlus } from "react-icons/sl";
 import "./Card.css";
@@ -38,7 +39,7 @@ const Card: React.FC<PropsType> = props => {
     handleOpenWindow(item);
   };
 
-  const getColors = (count: number): any => {
+  const getColors = (count: number): {backgroundColor : string, color: string, border: string, borderColor: string} | undefined => {
     if (count <= 9) {
       return {backgroundColor : '#ffffff', color: '#000000', border: '5px solid', borderColor: '#000000'}
     } else if (count >= 10 && count <= 19) {
@@ -50,7 +51,7 @@ const Card: React.FC<PropsType> = props => {
     } else if (count >= 100) {
       return {backgroundColor : '#000000', color: '#ffffff', border: '5px solid', borderColor: '#ffffff'}
     } else {
-      return {};
+      return undefined;
     }
   };
 
