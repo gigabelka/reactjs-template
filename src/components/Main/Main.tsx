@@ -7,6 +7,7 @@ import Card from "../Card/Card.tsx";
 import Modal from "../Modal/Modal.tsx";
 import Form from "../Form/Form.tsx";
 import Team from "../Team/Team.tsx";
+import "./Main.css";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 type PropsType = {

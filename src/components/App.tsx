@@ -6,7 +6,7 @@ import {
   isMiniAppDark,
 } from "@telegram-apps/sdk-react";
 import { AppRoot } from "@telegram-apps/telegram-ui";
-// import { routes } from "@/navigation/routes";
+import Main from "./Main/Main";
 
 export function App() {
   const lp = useMemo(() => retrieveLaunchParams(), []);
@@ -18,9 +18,9 @@ export function App() {
       platform={["macos", "ios"].includes(lp.tgWebAppPlatform) ? "ios" : "base"}
     >
       <HashRouter>
-      <Routes>
-          {/* {routes.map((route) => <Route key={route.path} {...route} />)} */}
-          <Route path="*" element={<Navigate to="/"/>}/>
+        <Routes>
+          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/" element={<Main />} />
         </Routes>
       </HashRouter>
     </AppRoot>
