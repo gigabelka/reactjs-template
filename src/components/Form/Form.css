@@ -1,0 +1,38 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    width: auto;
+    padding: 20px;
+}
+
+.form__input {
+    width: calc(100% - 25px);
+    padding: 10px;
+    margin-top: 15px;
+}
+
+.form__select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+.form__text{
+    width: calc(100% - 25px);
+    padding: 10px;
+}
+
+.form__divButton{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.form__divButton__button{
+    float: left;
+    width: 30px;
+    height: 30px;
+    font-size: large;
+    z-index: 3;
+}
