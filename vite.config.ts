@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import react from '@vitejs/plugin-react-swc';
+import { defineConfig } from 'vite';
 import mkcert from 'vite-plugin-mkcert';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // base: '/reactjs-template/',
+  base: '/reactjs-template/',
   css: {
     preprocessorOptions: {
       scss: {
@@ -27,6 +27,7 @@ export default defineConfig({
   ],
   build: {
     target: 'esnext',
+    minify: 'terser'
   },
   publicDir: './public',
   server: {
@@ -34,4 +35,3 @@ export default defineConfig({
     host: true,
   },
 });
-

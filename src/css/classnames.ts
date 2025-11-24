@@ -13,9 +13,7 @@ export function isRecord(v: unknown): v is Record<string, unknown> {
  * @param values - values array.
  * @returns Final class name.
  */
-type ClassValue = string | number | boolean | null | undefined | Record<string, unknown> | ClassValue[];
-
-export function classNames(...values: ClassValue[]): string {
+export function classNames(...values: any[]): string {
   return values
     .map((value) => {
       if (typeof value === 'string') {
@@ -23,11 +21,11 @@ export function classNames(...values: ClassValue[]): string {
       }
 
       if (isRecord(value)) {
-        return classNames(Object.entries(value).map((entry) => entry[1] && entry[0]).filter(Boolean) as ClassValue[]);
+        return classNames(Object.entries(value).map((entry) => entry[1] && entry[0]));
       }
 
       if (Array.isArray(value)) {
-        return classNames(...(value as ClassValue[]));
+        return classNames(...value);
       }
     })
     .filter(Boolean)
@@ -44,9 +42,9 @@ type UnionRequiredKeys<U> = U extends U
 
 type UnionOptionalKeys<U> = Exclude<UnionStringKeys<U>, UnionRequiredKeys<U>>;
 
-export type MergeClassNames<Tuple extends ClassValue[]> =
+export type MergeClassNames<Tuple extends any[]> =
 // Removes all types from union that will be ignored by the mergeClassNames function.
-  Exclude<Tuple[number], number | string | null | undefined | ClassValue[] | boolean> extends infer Union
+  Exclude<Tuple[number], number | string | null | undefined | any[] | boolean> extends infer Union
     ?
     & { [K in UnionRequiredKeys<Union>]: string; }
     & { [K in UnionOptionalKeys<Union>]?: string; }
@@ -60,13 +58,13 @@ export type MergeClassNames<Tuple extends ClassValue[]> =
  * @returns An object with keys from all objects with merged values.
  * @see classNames
  */
-export function mergeClassNames<T extends ClassValue[]>(...partials: T): MergeClassNames<T> {
+export function mergeClassNames<T extends any[]>(...partials: T): MergeClassNames<T> {
   return partials.reduce<MergeClassNames<T>>((acc, partial) => {
     if (isRecord(partial)) {
       Object.entries(partial).forEach(([key, value]) => {
-        const className = classNames((acc as Record<string, unknown>)[key] as ClassValue, value as ClassValue);
+        const className = classNames((acc as any)[key], value);
         if (className) {
-          (acc as Record<string, unknown>)[key] = className;
+          (acc as any)[key] = className;
         }
       });
     }

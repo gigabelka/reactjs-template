@@ -1,26 +1,22 @@
-import { useMemo } from "react";
-import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
-import {
-  retrieveLaunchParams,
-  useSignal,
-  isMiniAppDark,
-} from "@telegram-apps/sdk-react";
-import { AppRoot } from "@telegram-apps/telegram-ui";
-import Main from "./Main/Main";
+import { Navigate, Route, Routes, HashRouter } from 'react-router-dom';
+import { useLaunchParams, useSignal, miniApp } from '@tma.js/sdk-react';
+import { AppRoot } from '@telegram-apps/telegram-ui';
+
+import { routes } from '@/navigation/routes.tsx';
 
 export function App() {
-  const lp = useMemo(() => retrieveLaunchParams(), []);
-  const isDark = useSignal(isMiniAppDark);
+  const lp = useLaunchParams();
+  const isDark = useSignal(miniApp.isDark);
 
   return (
     <AppRoot
-      appearance={isDark ? "dark" : "light"}
-      platform={["macos", "ios"].includes(lp.tgWebAppPlatform) ? "ios" : "base"}
+      appearance={isDark ? 'dark' : 'light'}
+      platform={['macos', 'ios'].includes(lp.tgWebAppPlatform) ? 'ios' : 'base'}
     >
       <HashRouter>
         <Routes>
-          <Route path="*" element={<Navigate to="/" />} />
-          <Route path="/" element={<Main />} />
+          {routes.map((route) => <Route key={route.path} {...route} />)}
+          <Route path="*" element={<Navigate to="/"/>}/>
         </Routes>
       </HashRouter>
     </AppRoot>

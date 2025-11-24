@@ -1,16 +1,11 @@
 import { classNames, isRecord } from '@/css/classnames.js';
 
-type ModValue = string | number | boolean | null | undefined;
-type ModObject = Record<string, ModValue>;
-type ModArray = Array<ModValue | ModObject | ModArray>;
-type Mod = ModValue | ModObject | ModArray;
-
 export interface BlockFn {
-  (...mods: Mod[]): string;
+  (...mods: any): string;
 }
 
 export interface ElemFn {
-  (elem: string, ...mods: Mod[]): string;
+  (elem: string, ...mods: any): string;
 }
 
 /**
@@ -18,7 +13,7 @@ export interface ElemFn {
  * @param element - element name.
  * @param mod - mod to apply.
  */
-function applyMods(element: string, mod: Mod): string {
+function applyMods(element: string, mod: any): string {
   if (Array.isArray(mod)) {
     return classNames(mod.map(m => applyMods(element, m)));
   }
@@ -36,7 +31,7 @@ function applyMods(element: string, mod: Mod): string {
  * @param element - element name.
  * @param mods - mod to apply.
  */
-function computeClassnames(element: string, ...mods: Mod[]): string {
+function computeClassnames(element: string, ...mods: any): string {
   return classNames(element, applyMods(element, mods));
 }
 
